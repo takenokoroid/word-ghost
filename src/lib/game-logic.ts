@@ -31,17 +31,11 @@ export function setupRound(
     name,
     assignedWord: i === wolfIndex ? ghostWord : majorityWord,
     isWolf: i === wolfIndex,
-    answer: null,
   }));
 
   return { players, turnType, topicPair, ghostWord, majorityWord };
 }
 
-export function checkWin(
-  players: Player[],
-  ghostWord: string
-): { won: boolean; correctPlayers: Player[] } {
-  const correctPlayers = players.filter((p) => p.answer === ghostWord);
-  const won = correctPlayers.length === players.length;
-  return { won, correctPlayers };
+export function checkWin(finalAnswer: string, ghostWord: string): boolean {
+  return finalAnswer.trim() === ghostWord.trim();
 }

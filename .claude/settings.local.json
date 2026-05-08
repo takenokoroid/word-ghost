@@ -6,7 +6,8 @@
       "Bash(cp -r /tmp/word-ghost-init/public \"C:/Users/taken/Desktop/VSCode/dev/word-ghost/\")",
       "Bash(rm -f package-lock.json)",
       "Bash(pnpm install:*)",
-      "Bash(mkdir:*)"
+      "Bash(mkdir:*)",
+      "Bash(pnpm tsc *)"
     ]
   }
 }

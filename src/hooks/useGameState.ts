@@ -21,6 +21,7 @@ const initialState: GameState = {
   currentPlayerIndex: 0,
   ghostWord: null,
   majorityWord: null,
+  finalAnswer: null,
 };
 
 function reducer(state: GameState, action: Action): GameState {
@@ -36,6 +37,7 @@ function reducer(state: GameState, action: Action): GameState {
         ghostWord: round.ghostWord,
         majorityWord: round.majorityWord,
         currentPlayerIndex: 0,
+        finalAnswer: null,
       };
     }
     case "NEXT_PLAYER": {
@@ -50,22 +52,10 @@ function reducer(state: GameState, action: Action): GameState {
     case "END_DISCUSSION":
       return { ...state, phase: "answer-submit", currentPlayerIndex: 0 };
     case "SUBMIT_ANSWER": {
-      const updatedPlayers = state.players.map((p, i) =>
-        i === state.currentPlayerIndex ? { ...p, answer: action.answer } : p
-      );
-      const nextIndex = state.currentPlayerIndex + 1;
-      if (nextIndex >= state.players.length) {
-        return {
-          ...state,
-          players: updatedPlayers,
-          phase: "result",
-          currentPlayerIndex: 0,
-        };
-      }
       return {
         ...state,
-        players: updatedPlayers,
-        currentPlayerIndex: nextIndex,
+        finalAnswer: action.answer,
+        phase: "result",
       };
     }
     case "NEW_ROUND":

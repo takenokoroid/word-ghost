@@ -11,7 +11,6 @@ export type Player = {
   name: string;
   assignedWord: string;
   isWolf: boolean;
-  answer: string | null;
 };
 
 export type GamePhase =
@@ -29,4 +28,5 @@ export type GameState = {
   currentPlayerIndex: number;
   ghostWord: string | null;
   majorityWord: string | null;
+  finalAnswer: string | null;
 };

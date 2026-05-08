@@ -32,10 +32,8 @@ export default function GamePage() {
         <DiscussionPhase onEnd={() => dispatch({ type: "END_DISCUSSION" })} />
       )}
 
-      {state.phase === "answer-submit" && currentPlayer && (
+      {state.phase === "answer-submit" && (
         <AnswerSubmit
-          key={currentPlayer.id}
-          player={currentPlayer}
           onSubmit={(answer) => dispatch({ type: "SUBMIT_ANSWER", answer })}
         />
       )}
@@ -43,12 +41,14 @@ export default function GamePage() {
       {state.phase === "result" &&
         state.ghostWord &&
         state.majorityWord &&
-        state.turnType && (
+        state.turnType &&
+        state.finalAnswer && (
           <ResultReveal
             players={state.players}
             ghostWord={state.ghostWord}
             majorityWord={state.majorityWord}
             turnType={state.turnType}
+            finalAnswer={state.finalAnswer}
             onNewRound={() => dispatch({ type: "NEW_ROUND" })}
           />
         )}
