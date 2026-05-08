@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cp /tmp/word-ghost-init/.gitignore /tmp/word-ghost-init/eslint.config.mjs /tmp/word-ghost-init/next.config.ts /tmp/word-ghost-init/next-env.d.ts /tmp/word-ghost-init/package.json /tmp/word-ghost-init/package-lock.json /tmp/word-ghost-init/postcss.config.mjs /tmp/word-ghost-init/tsconfig.json \"C:/Users/taken/Desktop/VSCode/dev/word-ghost/\")",
+      "Bash(cp -r /tmp/word-ghost-init/src \"C:/Users/taken/Desktop/VSCode/dev/word-ghost/\")",
+      "Bash(cp -r /tmp/word-ghost-init/public \"C:/Users/taken/Desktop/VSCode/dev/word-ghost/\")",
+      "Bash(rm -f package-lock.json)",
+      "Bash(pnpm install:*)",
+      "Bash(mkdir:*)"
+    ]
+  }
+}
