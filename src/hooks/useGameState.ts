@@ -11,7 +11,8 @@ type Action =
   | { type: "START_DISCUSSION" }
   | { type: "END_DISCUSSION" }
   | { type: "SUBMIT_ANSWER"; answer: string }
-  | { type: "NEW_ROUND" };
+  | { type: "NEXT_ROUND" }
+  | { type: "RESET_TO_LOBBY" };
 
 const initialState: GameState = {
   phase: "lobby",
@@ -58,7 +59,23 @@ function reducer(state: GameState, action: Action): GameState {
         phase: "result",
       };
     }
-    case "NEW_ROUND":
+    case "NEXT_ROUND": {
+      const playerNames = state.players.map((p) => p.name);
+      if (playerNames.length === 0) return { ...initialState };
+      const round = setupRound(playerNames, TOPIC_PAIRS);
+      return {
+        ...state,
+        phase: "card-reveal",
+        players: round.players,
+        topicPair: round.topicPair,
+        turnType: round.turnType,
+        ghostWord: round.ghostWord,
+        majorityWord: round.majorityWord,
+        currentPlayerIndex: 0,
+        finalAnswer: null,
+      };
+    }
+    case "RESET_TO_LOBBY":
       return { ...initialState };
     default:
       return state;

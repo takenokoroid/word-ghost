@@ -9,7 +9,8 @@ type Props = {
   majorityWord: string;
   turnType: TurnType;
   finalAnswer: string;
-  onNewRound: () => void;
+  onNextRound: () => void;
+  onResetToLobby: () => void;
 };
 
 export default function ResultReveal({
@@ -18,7 +19,8 @@ export default function ResultReveal({
   majorityWord,
   turnType,
   finalAnswer,
-  onNewRound,
+  onNextRound,
+  onResetToLobby,
 }: Props) {
   const won = checkWin(finalAnswer, ghostWord);
   const wolf = players.find((p) => p.isWolf);
@@ -61,12 +63,20 @@ export default function ResultReveal({
         </div>
       )}
 
-      <button
-        onClick={onNewRound}
-        className="w-full rounded-full bg-foreground text-background py-3 text-lg font-bold transition-colors hover:opacity-90 mt-4"
-      >
-        もう一回
-      </button>
+      <div className="w-full flex flex-col gap-2 mt-4">
+        <button
+          onClick={onNextRound}
+          className="w-full rounded-full bg-foreground text-background py-3 text-lg font-bold transition-colors hover:opacity-90"
+        >
+          同じメンバーでもう一回
+        </button>
+        <button
+          onClick={onResetToLobby}
+          className="w-full rounded-full border border-zinc-300 dark:border-zinc-700 py-3 text-sm font-medium text-zinc-600 dark:text-zinc-400 transition-colors hover:bg-zinc-100 dark:hover:bg-zinc-800"
+        >
+          メンバーを変更する
+        </button>
+      </div>
     </div>
   );
 }

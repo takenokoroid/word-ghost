@@ -49,7 +49,8 @@ export default function GamePage() {
             majorityWord={state.majorityWord}
             turnType={state.turnType}
             finalAnswer={state.finalAnswer}
-            onNewRound={() => dispatch({ type: "NEW_ROUND" })}
+            onNextRound={() => dispatch({ type: "NEXT_ROUND" })}
+            onResetToLobby={() => dispatch({ type: "RESET_TO_LOBBY" })}
           />
         )}
     </div>
